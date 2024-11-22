@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Submit order e2e(failed)">
+    <classes>
+      <class name="Ekart.tests.SubmitOrderTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="submitOrder"/>
+          <include name="launchApplication"/>
+        </methods>
+      </class> <!-- Ekart.tests.SubmitOrderTest -->
+    </classes>
+  </test> <!-- Submit order e2e(failed) -->
+  <test thread-count="5" name="Login error validation(failed)">
+    <classes>
+      <class name="Ekart.tests.ErrorValidations">
+        <methods>
+          <include name="Verify_added_cart_item"/>
+          <include name="tearDown"/>
+          <include name="launchApplication"/>
+          <include name="Verify_error_invaliduser_and_password"/>
+        </methods>
+      </class> <!-- Ekart.tests.ErrorValidations -->
+    </classes>
+  </test> <!-- Login error validation(failed) -->
+</suite> <!-- Failed suite [Suite] -->
