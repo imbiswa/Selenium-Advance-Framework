@@ -12,11 +12,11 @@ import TestComponenets.BaseTest;
 public class ErrorValidations extends BaseTest{
 	
 	
-	   @Test
+	   @Test(groups = {"ErrorHandling"})
 	   public void Verify_error_invaliduser_and_password() throws IOException 
 			{
 			   
-			    landingpage = launchApplication();
+			   // landingpage = launchApplication();
 			    landingpage.loginApplication("biswam1@gmail.com", "B@123456b1");
 			    landingpage.getErrorMessage();
 			    Assert.assertEquals("Incorrect email or password.", landingpage.getErrorMessage());
@@ -28,7 +28,7 @@ public class ErrorValidations extends BaseTest{
 			{
 			    String productName = "ZARA COAT 3";
 
-			    landingpage = launchApplication();
+			   // landingpage = launchApplication();
 			    ProductCatalogue productCatalogue=landingpage.loginApplication("biswam@gmail.com", "B@123456b");
 				
 				List<WebElement> products =productCatalogue.getProductList();

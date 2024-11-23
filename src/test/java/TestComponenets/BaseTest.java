@@ -10,7 +10,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 
 import Ekart.pageobjects.LandingPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -56,7 +58,7 @@ public class BaseTest {
 		
 	}
 	
-	@BeforeMethod
+	@BeforeTest(alwaysRun = true)
 	public LandingPage launchApplication() throws IOException
 	{
 		driver = initializeDriver();
@@ -65,8 +67,10 @@ public class BaseTest {
 		
 		return landingpage;
 	}
+	//always run true because , for testng is is being treated as a test , if we group test cases then it will not run and we can't make
+	// this two as apart of any group 
 	
-	@AfterMethod
+	@AfterTest(alwaysRun = true)
 	public void tearDown()
 	{
 		driver.close();
