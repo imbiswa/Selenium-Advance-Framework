@@ -38,8 +38,6 @@ public class SubmitOrderTest extends BaseTest{
 				System.out.println(confirmMessage);
 			
 		}
-	   
-	   
 	   @Test(dependsOnMethods = {"submitOrder"})
 	   public void orderHistoryTest()
 	   {
@@ -49,25 +47,26 @@ public class SubmitOrderTest extends BaseTest{
 	   }
 	   
 	   @DataProvider
-	   public Object[][] getData()
+	   public Object[][] getData() throws IOException
 	   {
-		   HashMap <String,String > map = new HashMap <String,String>();
-		   map.put("email", "biswam@gmail.com");
-		   map.put("password", "B@123456b");
-		   map.put("product", "ZARA COAT 3");
+
+		  List<HashMap<String, String>> data = getJsondataTomap((System.getProperty("user.dir")
+					+"//src//test//java//data//Purchase.json"));
+		   return new Object [][] {{data.get(0)},{data.get(1)}};
 		   
-		   HashMap <String,String > map1 = new HashMap <String,String>();
-		   map1.put("email", "shetty@gmail.com");
-		   map1.put("password", "Iamking@000");
-		   map1.put("product", "ADIDAS ORIGINAL");
-		   
-		   return new Object [][] {{map},{map1}};
-		   
-		   //object here we can send generic data may be string /int/char anything
+		 
 	
 	   }
 
-	
+//	   HashMap <String,String > map = new HashMap <String,String>();
+//	   map.put("email", "biswam@gmail.com");
+//	   map.put("password", "B@123456b");
+//	   map.put("product", "ZARA COAT 3");
+//	   
+//	   HashMap <String,String > map1 = new HashMap <String,String>();
+//	   map1.put("email", "shetty@gmail.com");
+//	   map1.put("password", "Iamking@000");
+//	   map1.put("product", "ADIDAS ORIGINAL");
 		
 		
 }
