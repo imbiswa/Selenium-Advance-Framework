@@ -15,20 +15,24 @@ import Ekart.pageobjects.ConfirmationPage;
 import Ekart.pageobjects.OrderPage;
 import Ekart.pageobjects.ProductCatalogue;
 import TestComponenets.BaseTest;
+import TestComponenets.Retry;
 public class SubmitOrderTest extends BaseTest{
-	String productName = "ZARA COAT 3";
+
+	String prdct= "ZARA COAT 3";
 	
-	   @Test(dataProvider = "getData", groups= {"Purchase"})
+	   @Test(dataProvider = "getData", groups= {"Purchase"}, retryAnalyzer=Retry.class)
 	   public void submitOrder( HashMap <String,String> input) throws IOException, InterruptedException
 			{
 			    
 			   
-			   // landingpage = launchApplication();
+			 
 			    ProductCatalogue productCatalogue=landingpage.loginApplication(input.get("email"), input.get("password"));
 				List<WebElement> products =productCatalogue.getProductList();
 				productCatalogue.addProductToCart(input.get("product"));
 				CartPage cartPage =productCatalogue.goToCartPage();
 				Boolean match  = cartPage.VerifyproductDisplay(input.get("product"));
+				String prdct = input.get("product");
+				System.out.println(input.get("product"));
 				Assert.assertTrue(match);
 				CheckoutPage checkoutPage =cartPage.goToCheckout();
 				checkoutPage.selectCountry("India");
@@ -39,11 +43,12 @@ public class SubmitOrderTest extends BaseTest{
 			
 		}
 	   @Test(dependsOnMethods = {"submitOrder"})
-	   public void orderHistoryTest()
+	   public void orderHistoryTest(String prdct )
 	   {
+		   
 		   ProductCatalogue productCatalogue=landingpage.loginApplication("biswam@gmail.com", "B@123456b");
 		   OrderPage orderPage= productCatalogue.goToOrderPage();
-		   Assert.assertTrue(orderPage.VerifyOrdertDisplay(productName));
+		   Assert.assertTrue(orderPage.VerifyOrdertDisplay(prdct));
 	   }
 	   
 	   @DataProvider

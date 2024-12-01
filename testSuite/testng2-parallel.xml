@@ -4,6 +4,10 @@
 
 
 <suite parallel="tests" name="Suite">
+		
+<listeners>
+  <listener class-name ="TestComponenets.TestListener"/>
+</listeners>
   <test thread-count="5" name="Submit order e2e">
     <classes>
       <class name="Ekart.tests.SubmitOrderTest"/>

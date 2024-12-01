@@ -39,7 +39,10 @@ public class BaseTest {
 		FileInputStream fis =new FileInputStream(System.getProperty("user.dir")+
 				"\\src\\main\\java\\resources\\Globaldata.properties");
 		prop.load(fis);
-		String browserName = prop.getProperty("browser");
+		
+		//below code Ternary operator and use full for Maven code
+	    String browserName=	System.getProperty("browser")!=null ? System.getProperty("browser") :prop.getProperty("browser");
+		//String browserName = prop.getProperty("browser");
 		
 		
 		if(browserName.equalsIgnoreCase(browserName))
@@ -87,20 +90,28 @@ public class BaseTest {
 	}
 	
 	
-	public String getScreenshot(String testcasename, WebDriver driver) throws IOException
+//	public String getScreenshot(String testcasename, WebDriver driver) throws IOException
+//	{
+//		TakesScreenshot ts = (TakesScreenshot) driver;
+//		 File Source =ts.getScreenshotAs(OutputType.FILE);
+//		 
+//		 File file = new File (System.getProperty(("user.dir")+"//reports//"+testcasename+".png"));
+//		 
+//		 FileUtils.copyFile(Source, file);
+//		 
+//		 return System.getProperty("user.dir")+"//reports//"+testcasename+".png";
+//	}
+	
+	public String getScreenshot(String testCaseName, WebDriver driver) throws IOException
 	{
-		TakesScreenshot ts = (TakesScreenshot) driver;
-		 File Source =ts.getScreenshotAs(OutputType.FILE);
-		 
-		 File file = new File (System.getProperty(("user.dir")+"//reports//"+testcasename+".png"));
-		 
-		 FileUtils.copyFile(Source, file);
-		 
-		 return System.getProperty("user.dir")+"//reports//"+testcasename+".png";
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
+		FileUtils.copyFile(source, file);
+		return System.getProperty("user.dir") + "//reports//" + testCaseName + ".png";			
 	}
 	
-	
-	@BeforeTest(alwaysRun = true)
+	@BeforeMethod(alwaysRun = true)
 	public LandingPage launchApplication() throws IOException
 	{
 		driver = initializeDriver();
@@ -112,7 +123,7 @@ public class BaseTest {
 	//always run true because , for testng is is being treated as a test , if we group test cases then it will not run and we can't make
 	// this two as apart of any group 
 	
-	@AfterTest(alwaysRun = true)
+	@AfterMethod(alwaysRun = true)
 	public void tearDown()
 	{
 		driver.close();

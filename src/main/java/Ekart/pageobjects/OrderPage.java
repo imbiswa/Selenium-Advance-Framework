@@ -15,7 +15,7 @@ public class OrderPage extends AbstractComponenet {
 	 
 	
 	WebDriver driver;
-	
+	//String productName = "ZARA COAT 3";
 	public OrderPage(WebDriver driver)
 	
 	{   super(driver);
