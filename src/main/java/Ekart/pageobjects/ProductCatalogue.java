@@ -32,11 +32,14 @@ public class ProductCatalogue extends AbstractComponenet{
 	@FindBy(css=".ng-animating")
 	 WebElement spinner;
 	
-	
+	@FindBy(css="div h2")
+	WebElement profileofProduct;
 	
 	By productsBy=By.cssSelector(".mb-3");
 	By addToCart =By.cssSelector(".card-body button:last-of-type");
+	By clicktoView=By.cssSelector("i[class='fa fa-eye']");
 	By toastMessage = By.cssSelector("#toast-container");
+	By productProfile =By.cssSelector("div h2");
 	
 	public List<WebElement> getProductList()
 	
@@ -47,13 +50,16 @@ public class ProductCatalogue extends AbstractComponenet{
 	
 	
 	
-	public WebElement getProductByName(String ProductName)
+	public WebElement getProductByName(String productName)
 	{
 		WebElement prod= getProductList().stream().filter(product->product.findElement(By.cssSelector("b"))
-				.getText().equals("ZARA COAT 3")).findFirst().orElse(null);
+				.getText().equals(productName)).findFirst().orElse(null);
+		
 		
 		return prod;
 	}
+	
+	
 	
 	public void addProductToCart(String ProductName) throws InterruptedException 
 	{
@@ -63,6 +69,21 @@ public class ProductCatalogue extends AbstractComponenet{
 		waitForElementTODisappear(spinner);
 		
 	}
+	
+	public void clickonviewproductDetails(String ProductName) throws InterruptedException 
+	{
+		WebElement prod = getProductByName(ProductName);
+		prod.findElement(clicktoView).click();
+			
+	}
+	public String getproductProfile()
+	{
+		String profile =profileofProduct.getText();
+		return profile;
+		
+	}
+	
+	
 	
 	
 	 	

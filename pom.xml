@@ -23,6 +23,8 @@
        <artifactId>selenium-java</artifactId>
        <version>4.20.0</version>
    </dependency>
+ 
+ 
    
    <dependency>
     <groupId>org.testng</groupId>
@@ -49,10 +51,15 @@
     <artifactId>extentreports</artifactId>
     <version>5.1.2</version>
  </dependency>
- <dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-log4j12</artifactId>
-    <version>1.7.30</version>
+  <dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-java</artifactId>
+    <version>7.20.1</version>
+</dependency>
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-testng</artifactId>
+    <version>7.20.1</version>
 </dependency>
 
    

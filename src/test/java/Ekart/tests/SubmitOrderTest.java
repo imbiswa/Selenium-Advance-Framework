@@ -18,7 +18,7 @@ import TestComponenets.BaseTest;
 import TestComponenets.Retry;
 public class SubmitOrderTest extends BaseTest{
 
-	String prdct= "ZARA COAT 3";
+	String prdcproductNamet= "ZARA COAT 3";
 	
 	   @Test(dataProvider = "getData", groups= {"Purchase"}, retryAnalyzer=Retry.class)
 	   public void submitOrder( HashMap <String,String> input) throws IOException, InterruptedException
@@ -28,11 +28,11 @@ public class SubmitOrderTest extends BaseTest{
 			 
 			    ProductCatalogue productCatalogue=landingpage.loginApplication(input.get("email"), input.get("password"));
 				List<WebElement> products =productCatalogue.getProductList();
-				productCatalogue.addProductToCart(input.get("product"));
+				productCatalogue.addProductToCart("productName");
 				CartPage cartPage =productCatalogue.goToCartPage();
-				Boolean match  = cartPage.VerifyproductDisplay(input.get("product"));
-				String prdct = input.get("product");
-				System.out.println(input.get("product"));
+				Boolean match  = cartPage.VerifyproductDisplay("productName");
+				//String productName = input.get("product");
+				//System.out.println(input.get("product"));
 				Assert.assertTrue(match);
 				CheckoutPage checkoutPage =cartPage.goToCheckout();
 				checkoutPage.selectCountry("India");
@@ -50,6 +50,8 @@ public class SubmitOrderTest extends BaseTest{
 		   OrderPage orderPage= productCatalogue.goToOrderPage();
 		   Assert.assertTrue(orderPage.VerifyOrdertDisplay(prdct));
 	   }
+	   
+	  
 	   
 	   @DataProvider
 	   public Object[][] getData() throws IOException
